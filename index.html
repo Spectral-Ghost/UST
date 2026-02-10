@@ -56,25 +56,22 @@
     <div id="game-container">
         <div id="world">
             <div id="ground"></div>
-            <div id="player">YOU</div>
         </div>
     </div>
 
     <script>
-        // ---------- CONFIGURABLE VARIABLES ----------
-        const WORLD_WIDTH = 1500;      // Width of the entire world
-        const GROUND_HEIGHT = 300;     // Height of the ground
-        const GROUND_WIDTH = WORLD_WIDTH; // Width of the ground rectangle
-        const PLAYER_WIDTH = 60;       // Player width
-        const PLAYER_HEIGHT = 80;      // Player height
-        const PLAYER_SPEED = 9;        // Player movement speed
-        // -------------------------------------------
+        // variables
+        const WORLD_WIDTH = 1500;      
+        const GROUND_HEIGHT = 300;   
+        const GROUND_WIDTH = WORLD_WIDTH; 
+        const PLAYER_WIDTH = 60;       
+        const PLAYER_HEIGHT = 80;     
+        const PLAYER_SPEED = 9;     
 
         const worldEl = document.getElementById('world');
         const groundEl = document.getElementById('ground');
         const playerEl = document.getElementById('player');
 
-        // Apply sizes from variables
         worldEl.style.width = WORLD_WIDTH + 'px';
         groundEl.style.width = GROUND_WIDTH + 'px';
         groundEl.style.height = GROUND_HEIGHT + 'px';
@@ -97,16 +94,13 @@
             if (keys['ArrowUp'] || keys['w']) playerY += PLAYER_SPEED;
             if (keys['ArrowDown'] || keys['s']) playerY -= PLAYER_SPEED;
 
-            // X Boundaries: Left and right edge of screen
             playerX = Math.max(cameraX, Math.min(playerX, cameraX + screenWidth - PLAYER_WIDTH));
 
-            // Y Boundaries
             playerY = Math.max(0, Math.min(playerY, GROUND_HEIGHT - 5));
 
             playerEl.style.left = playerX + 'px';
             playerEl.style.bottom = playerY + 'px';
 
-            // Camera: Center player horizontally
             const targetCameraX = playerX + PLAYER_WIDTH / 2 - screenWidth / 2;
             cameraX = Math.max(0, Math.min(targetCameraX, WORLD_WIDTH - screenWidth));
 
